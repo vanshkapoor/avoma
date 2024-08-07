@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ApiRestComponent } from "../components/ApiRestComponent";
 
 export const Posts = () => {
     const navigate = useNavigate();
@@ -22,20 +23,14 @@ export const Posts = () => {
         }
     }, [data]);
 
-    if (isPending) {
-        return <span>Loading...</span>
-    }
-
-    if (isError) {
-        return <span>Error: {error.message}</span>
-    }
 
     const filterPosts = () => {
         const newposts = data.filter(post => post.title.indexOf(searchval) > -1);
         setFilteredPosts(newposts);
     }
 
-    return <div className="container mx-auto">
+    return <ApiRestComponent isPending={isPending} isError={isError}> 
+    <div className="container mx-auto">
         <p className="container mx-auto text-lg font-bold py-4 mb-4">ALL POSTS</p>
         <input type="text" className="border-2 p-1 mb-4 rounded-md" placeholder="search posts" onChange={e => setSearchval(e.target.value)} />
         <button
@@ -52,4 +47,5 @@ export const Posts = () => {
             </div>)}
         </div>
     </div>
+    </ApiRestComponent>
 }
