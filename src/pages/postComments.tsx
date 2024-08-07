@@ -11,7 +11,7 @@ export const PostComments = () => {
     const { isPending, isError, data, error } = useQuery({
         queryKey: ['postcomments'],
         queryFn: async () => {
-            const data = await fetch(`https://jsonplaceholder.typicode.com/comments?${postId}`)
+            const data = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
             const response = await data.json();
             return response;
         },
