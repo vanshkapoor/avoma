@@ -18,7 +18,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
       <Routes>
         {
-          Object.values(routes).map(route => <Route exact path={route.route} Component={route.component} />)
+          Object.values(routes).map(route => <Route path={route.route} Component={route.component} />)
         }
       </Routes>
       </QueryClientProvider>
